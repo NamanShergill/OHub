@@ -16,3 +16,6 @@
 [submodule "dependencies/dart-highlighting"]
 	path = dependencies/dart-highlighting
 	url = git@github.com:NamanShergill/dart-highlighting.git
+[submodule "dependencies/animated_theme_switcher"]
+	path = dependencies/animated_theme_switcher
+	url = https://github.com/NamanShergill/animated_theme_switcher
