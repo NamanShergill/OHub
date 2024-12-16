@@ -39,10 +39,6 @@ android {
     }
 
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
     flavorDimensions "build-type"
 
     productFlavors {
@@ -98,6 +94,17 @@ android {
             enable true
             universalApk true
         }
+    }
+    namespace 'com.felix.diohub'
+    lint {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
