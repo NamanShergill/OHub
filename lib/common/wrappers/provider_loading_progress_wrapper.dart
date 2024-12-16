@@ -19,6 +19,7 @@ class ProviderLoadingProgressWrapper<T extends BaseDataProvider<dynamic>>
     super.key,
     this.listener,
   });
+
   final ChildBuilder<T> childBuilder;
   final ValueChanged<Status>? listener;
   final WidgetBuilder? loadingBuilder;
@@ -39,8 +40,9 @@ class ProviderLoadingProgressWrapperState<T extends BaseDataProvider<dynamic>>
       });
     }
     InternetConnectivity.networkStream.listen((NetworkStatus event) async {
-      if (event == NetworkStatus.online) {
-        final T provider = context.read<T>();
+      final BuildContext bContext = context;
+      if (event == NetworkStatus.online && bContext.mounted) {
+        final T provider = bContext.read<T>();
         if (provider.status == Status.error) {
           await provider.loadData();
         }

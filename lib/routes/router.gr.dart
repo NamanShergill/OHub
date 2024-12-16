@@ -30,181 +30,12 @@ import 'package:diohub/view/repository/repository_screen.dart' as _i12;
 import 'package:diohub/view/repository/wiki/wiki_viewer.dart' as _i14;
 import 'package:flutter/material.dart' as _i16;
 
-abstract class $AppRouter extends _i15.RootStackRouter {
-  $AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, _i15.PageFactory> pagesMap = {
-    AuthRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i1.AuthScreen(
-          key: args.key,
-          onAuthenticated: args.onAuthenticated,
-        ),
-      );
-    },
-    ChangesViewer.name: (routeData) {
-      final args = routeData.argsAs<ChangesViewerArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i2.ChangesViewer(
-          args.patch,
-          args.contentURL,
-          args.fileType,
-          key: args.key,
-        ),
-      );
-    },
-    CommitInfoRoute.name: (routeData) {
-      final args = routeData.argsAs<CommitInfoRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i3.CommitInfoScreen(
-          commitURL: args.commitURL,
-          key: args.key,
-        ),
-      );
-    },
-    FileViewerAPI.name: (routeData) {
-      final args = routeData.argsAs<FileViewerAPIArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i4.FileViewerAPI(
-          args.sha,
-          repoURL: args.repoURL,
-          fileName: args.fileName,
-          branch: args.branch,
-          repoName: args.repoName,
-          key: args.key,
-        ),
-      );
-    },
-    IssuePullRoute.name: (routeData) {
-      final args = routeData.argsAs<IssuePullRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i5.IssuePullScreen(
-          number: args.number,
-          repoName: args.repoName,
-          ownerName: args.ownerName,
-          key: args.key,
-          commentsSince: args.commentsSince,
-          initialIndex: args.initialIndex,
-        ),
-      );
-    },
-    LandingLoadingRoute.name: (routeData) {
-      final args = routeData.argsAs<LandingLoadingRouteArgs>(
-          orElse: () => const LandingLoadingRouteArgs());
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i6.LandingLoadingScreen(
-          key: args.key,
-          initLink: args.initLink,
-        ),
-      );
-    },
-    LandingRoute.name: (routeData) {
-      final args = routeData.argsAs<LandingRouteArgs>(
-          orElse: () => const LandingRouteArgs());
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i7.LandingScreen(
-          deepLinkData: args.deepLinkData,
-          key: args.key,
-        ),
-      );
-    },
-    NewIssueRoute.name: (routeData) {
-      final args = routeData.argsAs<NewIssueRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i8.NewIssueScreen(
-          repo: args.repo,
-          owner: args.owner,
-          key: args.key,
-          template: args.template,
-        ),
-      );
-    },
-    OtherUserProfileRoute.name: (routeData) {
-      final args = routeData.argsAs<OtherUserProfileRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i9.OtherUserProfileScreen(
-          args.login,
-          key: args.key,
-        ),
-      );
-    },
-    PRReviewRoute.name: (routeData) {
-      final args = routeData.argsAs<PRReviewRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i10.PRReviewScreen(
-          args.nodeID,
-          pullNodeID: args.pullNodeID,
-          key: args.key,
-        ),
-      );
-    },
-    PlaceHolderRoute.name: (routeData) {
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i11.PlaceHolderScreen(),
-      );
-    },
-    RepositoryRoute.name: (routeData) {
-      final args = routeData.argsAs<RepositoryRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i12.RepositoryScreen(
-          args.repositoryURL,
-          branch: args.branch,
-          index: args.index,
-          deepLinkData: args.deepLinkData,
-          key: args.key,
-          initSHA: args.initSHA,
-        ),
-      );
-    },
-    SearchOverlayRoute.name: (routeData) {
-      final args = routeData.argsAs<SearchOverlayRouteArgs>();
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i13.SearchOverlayScreen(
-          args.searchData,
-          multiHero: args.multiHero,
-          onSubmit: args.onSubmit,
-          message: args.message,
-          heroTag: args.heroTag,
-          key: args.key,
-        ),
-      );
-    },
-    WikiViewer.name: (routeData) {
-      final args = routeData.argsAs<WikiViewerArgs>(
-          orElse: () => const WikiViewerArgs());
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i14.WikiViewer(
-          key: args.key,
-          repoURL: args.repoURL,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [_i1.AuthScreen]
 class AuthRoute extends _i15.PageRouteInfo<AuthRouteArgs> {
   AuthRoute({
     _i16.Key? key,
-    void Function()? onAuthenticated,
+    _i16.VoidCallback? onAuthenticated,
     List<_i15.PageRouteInfo>? children,
   }) : super(
           AuthRoute.name,
@@ -217,8 +48,17 @@ class AuthRoute extends _i15.PageRouteInfo<AuthRouteArgs> {
 
   static const String name = 'AuthRoute';
 
-  static const _i15.PageInfo<AuthRouteArgs> page =
-      _i15.PageInfo<AuthRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
+      return _i1.AuthScreen(
+        key: args.key,
+        onAuthenticated: args.onAuthenticated,
+      );
+    },
+  );
 }
 
 class AuthRouteArgs {
@@ -229,7 +69,7 @@ class AuthRouteArgs {
 
   final _i16.Key? key;
 
-  final void Function()? onAuthenticated;
+  final _i16.VoidCallback? onAuthenticated;
 
   @override
   String toString() {
@@ -259,8 +99,18 @@ class ChangesViewer extends _i15.PageRouteInfo<ChangesViewerArgs> {
 
   static const String name = 'ChangesViewer';
 
-  static const _i15.PageInfo<ChangesViewerArgs> page =
-      _i15.PageInfo<ChangesViewerArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ChangesViewerArgs>();
+      return _i2.ChangesViewer(
+        args.patch,
+        args.contentURL,
+        args.fileType,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class ChangesViewerArgs {
@@ -303,8 +153,16 @@ class CommitInfoRoute extends _i15.PageRouteInfo<CommitInfoRouteArgs> {
 
   static const String name = 'CommitInfoRoute';
 
-  static const _i15.PageInfo<CommitInfoRouteArgs> page =
-      _i15.PageInfo<CommitInfoRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CommitInfoRouteArgs>();
+      return _i3.CommitInfoScreen(
+        commitURL: args.commitURL,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class CommitInfoRouteArgs {
@@ -349,8 +207,20 @@ class FileViewerAPI extends _i15.PageRouteInfo<FileViewerAPIArgs> {
 
   static const String name = 'FileViewerAPI';
 
-  static const _i15.PageInfo<FileViewerAPIArgs> page =
-      _i15.PageInfo<FileViewerAPIArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<FileViewerAPIArgs>();
+      return _i4.FileViewerAPI(
+        args.sha,
+        repoURL: args.repoURL,
+        fileName: args.fileName,
+        branch: args.branch,
+        repoName: args.repoName,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class FileViewerAPIArgs {
@@ -407,8 +277,20 @@ class IssuePullRoute extends _i15.PageRouteInfo<IssuePullRouteArgs> {
 
   static const String name = 'IssuePullRoute';
 
-  static const _i15.PageInfo<IssuePullRouteArgs> page =
-      _i15.PageInfo<IssuePullRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<IssuePullRouteArgs>();
+      return _i5.IssuePullScreen(
+        number: args.number,
+        repoName: args.repoName,
+        ownerName: args.ownerName,
+        key: args.key,
+        commentsSince: args.commentsSince,
+        initialIndex: args.initialIndex,
+      );
+    },
+  );
 }
 
 class IssuePullRouteArgs {
@@ -457,8 +339,17 @@ class LandingLoadingRoute extends _i15.PageRouteInfo<LandingLoadingRouteArgs> {
 
   static const String name = 'LandingLoadingRoute';
 
-  static const _i15.PageInfo<LandingLoadingRouteArgs> page =
-      _i15.PageInfo<LandingLoadingRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LandingLoadingRouteArgs>(
+          orElse: () => const LandingLoadingRouteArgs());
+      return _i6.LandingLoadingScreen(
+        key: args.key,
+        initLink: args.initLink,
+      );
+    },
+  );
 }
 
 class LandingLoadingRouteArgs {
@@ -495,8 +386,17 @@ class LandingRoute extends _i15.PageRouteInfo<LandingRouteArgs> {
 
   static const String name = 'LandingRoute';
 
-  static const _i15.PageInfo<LandingRouteArgs> page =
-      _i15.PageInfo<LandingRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<LandingRouteArgs>(orElse: () => const LandingRouteArgs());
+      return _i7.LandingScreen(
+        deepLinkData: args.deepLinkData,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class LandingRouteArgs {
@@ -537,8 +437,18 @@ class NewIssueRoute extends _i15.PageRouteInfo<NewIssueRouteArgs> {
 
   static const String name = 'NewIssueRoute';
 
-  static const _i15.PageInfo<NewIssueRouteArgs> page =
-      _i15.PageInfo<NewIssueRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NewIssueRouteArgs>();
+      return _i8.NewIssueScreen(
+        repo: args.repo,
+        owner: args.owner,
+        key: args.key,
+        template: args.template,
+      );
+    },
+  );
 }
 
 class NewIssueRouteArgs {
@@ -582,8 +492,16 @@ class OtherUserProfileRoute
 
   static const String name = 'OtherUserProfileRoute';
 
-  static const _i15.PageInfo<OtherUserProfileRouteArgs> page =
-      _i15.PageInfo<OtherUserProfileRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OtherUserProfileRouteArgs>();
+      return _i9.OtherUserProfileScreen(
+        args.login,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class OtherUserProfileRouteArgs {
@@ -622,8 +540,17 @@ class PRReviewRoute extends _i15.PageRouteInfo<PRReviewRouteArgs> {
 
   static const String name = 'PRReviewRoute';
 
-  static const _i15.PageInfo<PRReviewRouteArgs> page =
-      _i15.PageInfo<PRReviewRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PRReviewRouteArgs>();
+      return _i10.PRReviewScreen(
+        args.nodeID,
+        pullNodeID: args.pullNodeID,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class PRReviewRouteArgs {
@@ -656,7 +583,12 @@ class PlaceHolderRoute extends _i15.PageRouteInfo<void> {
 
   static const String name = 'PlaceHolderRoute';
 
-  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      return const _i11.PlaceHolderScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -685,8 +617,20 @@ class RepositoryRoute extends _i15.PageRouteInfo<RepositoryRouteArgs> {
 
   static const String name = 'RepositoryRoute';
 
-  static const _i15.PageInfo<RepositoryRouteArgs> page =
-      _i15.PageInfo<RepositoryRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RepositoryRouteArgs>();
+      return _i12.RepositoryScreen(
+        args.repositoryURL,
+        branch: args.branch,
+        index: args.index,
+        deepLinkData: args.deepLinkData,
+        key: args.key,
+        initSHA: args.initSHA,
+      );
+    },
+  );
 }
 
 class RepositoryRouteArgs {
@@ -723,7 +667,7 @@ class SearchOverlayRoute extends _i15.PageRouteInfo<SearchOverlayRouteArgs> {
   SearchOverlayRoute({
     required _i13.SearchData searchData,
     required bool multiHero,
-    required void Function(_i13.SearchData) onSubmit,
+    required _i16.ValueChanged<_i13.SearchData> onSubmit,
     String? message,
     String heroTag = 'search_bar',
     _i16.Key? key,
@@ -743,8 +687,20 @@ class SearchOverlayRoute extends _i15.PageRouteInfo<SearchOverlayRouteArgs> {
 
   static const String name = 'SearchOverlayRoute';
 
-  static const _i15.PageInfo<SearchOverlayRouteArgs> page =
-      _i15.PageInfo<SearchOverlayRouteArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SearchOverlayRouteArgs>();
+      return _i13.SearchOverlayScreen(
+        args.searchData,
+        multiHero: args.multiHero,
+        onSubmit: args.onSubmit,
+        message: args.message,
+        heroTag: args.heroTag,
+        key: args.key,
+      );
+    },
+  );
 }
 
 class SearchOverlayRouteArgs {
@@ -761,7 +717,7 @@ class SearchOverlayRouteArgs {
 
   final bool multiHero;
 
-  final void Function(_i13.SearchData) onSubmit;
+  final _i16.ValueChanged<_i13.SearchData> onSubmit;
 
   final String? message;
 
@@ -793,8 +749,17 @@ class WikiViewer extends _i15.PageRouteInfo<WikiViewerArgs> {
 
   static const String name = 'WikiViewer';
 
-  static const _i15.PageInfo<WikiViewerArgs> page =
-      _i15.PageInfo<WikiViewerArgs>(name);
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<WikiViewerArgs>(orElse: () => const WikiViewerArgs());
+      return _i14.WikiViewer(
+        key: args.key,
+        repoURL: args.repoURL,
+      );
+    },
+  );
 }
 
 class WikiViewerArgs {

@@ -11,12 +11,14 @@ class InternetConnectivity {
   static Stream<NetworkStatus> get networkStream => _networkController.stream;
 
   static NetworkStatus _status = NetworkStatus.online;
+
   static NetworkStatus get status => _status;
 
   static Future<void> networkStatusService() async {
     Connectivity()
         .onConnectivityChanged
-        .listen((final ConnectivityResult status) async {
+        .listen((final List<ConnectivityResult> statuses) async {
+      final ConnectivityResult status = statuses.last;
       if (status != ConnectivityResult.none) {
         _networkController.add(NetworkStatus.restored);
         await Future<void>.delayed(const Duration(seconds: 5));

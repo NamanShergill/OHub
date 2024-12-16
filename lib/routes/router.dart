@@ -12,9 +12,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 StackRouter autoRoute(final BuildContext context) => AutoRouter.of(context);
 
 @AutoRouterConfig()
-class AppRouter extends $AppRouter {
+class AppRouter extends RootStackRouter {
   AppRouter(final BuildContext context) : authGuard = AuthGuard(context);
   final AuthGuard authGuard;
+
   @override
   RouteType get defaultRouteType => const RouteType.adaptive();
 
@@ -106,7 +107,9 @@ class AppRouter extends $AppRouter {
 
 class AuthGuard extends AutoRouteGuard {
   AuthGuard(this.context);
+
   final BuildContext context;
+
   @override
   void onNavigation(
     final NavigationResolver resolver,

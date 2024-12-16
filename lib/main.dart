@@ -70,27 +70,28 @@ class NewWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        navigatorObservers: [
+  Widget build(final BuildContext context) => MaterialApp(
+        navigatorObservers: <NavigatorObserver>[
           ChuckerFlutter.navigatorObserver,
         ],
         home: Builder(
-          builder: (BuildContext context) => Stack(
+          builder: (final BuildContext context) => Stack(
             children: <Widget>[
               SafeArea(
                 child: Scaffold(
                   body: NestedScrollView(
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) =>
-                            <Widget>[
+                    headerSliverBuilder: (final BuildContext context,
+                            final bool innerBoxIsScrolled) =>
+                        <Widget>[
                       const SliverAppBar(
                         title: Text('ajhs jhads '),
                         expandedHeight: 500,
                       ),
                     ],
                     body: ListView.builder(
-                      itemBuilder: (BuildContext context, int index) =>
-                          ListTile(title: Text(index.toString())),
+                      itemBuilder:
+                          (final BuildContext context, final int index) =>
+                              ListTile(title: Text(index.toString())),
                     ),
                   ),
                 ),
@@ -183,39 +184,51 @@ class _RootAppState extends State<RootApp> {
   @override
   Widget build(final BuildContext context) => DynamicColorBuilder(
         builder:
-            (final ColorScheme? lightDynamic, final ColorScheme? darkDynamic) =>
-                MaterialApp.router(
-          theme: getTheme(
-            context,
-            brightness: Brightness.light,
-            colorScheme: lightDynamic,
-          ),
-          darkTheme: getTheme(
-            context,
-            brightness: Brightness.dark,
-            colorScheme: darkDynamic,
-          ),
-          localizationsDelegates: const <LocalizationsDelegate>[
-            DefaultMaterialLocalizations.delegate,
-            DefaultCupertinoLocalizations.delegate,
-            DefaultWidgetsLocalizations.delegate,
-          ],
-          // getTheme(context, brightness: Brightness.light),
-          // darkTheme: getTheme(context, brightness: Brightness.dark),
-          routerDelegate: customRouter.delegate(
-            deepLinkBuilder: (final PlatformDeepLink deepLink) =>
-                DeepLink(<PageRouteInfo>[
-              LandingLoadingRoute(
-                initLink: deepLink.configuration.uri,
-              ),
-            ]),
-            navigatorObservers: () => [
-              ChuckerFlutter.navigatorObserver,
+            (final ColorScheme? lightDynamic, final ColorScheme? darkDynamic) {
+          ColorScheme? lightScheme;
+          ColorScheme? darkScheme;
+          print('hjbs jhbf s');
+          print(lightDynamic);
+          print(darkDynamic);
+          if (lightDynamic != null && darkDynamic != null) {
+            (lightScheme, darkScheme) =
+                _generateDynamicColourSchemes(lightDynamic, darkDynamic);
+          } else {
+            // logic to set standard static themes here
+          }
+          return MaterialApp.router(
+            theme: getTheme(
+              context,
+              brightness: Brightness.light,
+              colorScheme: lightScheme,
+            ),
+            darkTheme: getTheme(
+              context,
+              brightness: Brightness.dark,
+              colorScheme: darkScheme,
+            ),
+            localizationsDelegates: const <LocalizationsDelegate>[
+              DefaultMaterialLocalizations.delegate,
+              DefaultCupertinoLocalizations.delegate,
+              DefaultWidgetsLocalizations.delegate,
             ],
-            rebuildStackOnDeepLink: true,
-          ),
-          routeInformationParser: customRouter.defaultRouteParser(),
-        ),
+            // getTheme(context, brightness: Brightness.light),
+            // darkTheme: getTheme(context, brightness: Brightness.dark),
+            routerDelegate: customRouter.delegate(
+              deepLinkBuilder: (final PlatformDeepLink deepLink) =>
+                  DeepLink(<PageRouteInfo>[
+                LandingLoadingRoute(
+                  initLink: deepLink.configuration.uri,
+                ),
+              ]),
+              navigatorObservers: () => <NavigatorObserver>[
+                ChuckerFlutter.navigatorObserver,
+              ],
+              rebuildStackOnDeepLink: true,
+            ),
+            routeInformationParser: customRouter.defaultRouteParser(),
+          );
+        },
       );
 }
 
@@ -224,15 +237,12 @@ ThemeData getTheme(
   required final Brightness brightness,
   required final ColorScheme? colorScheme,
 }) {
-  final ColorScheme cs = colorScheme ??
-      switch (brightness) {
-        Brightness.dark => _defaultDarkColorScheme,
-        Brightness.light => _defaultLightColorScheme,
-      };
+  final ColorScheme? cs = colorScheme;
   // cs= cs.copyWith(surfaceTint: Colors.transparent);
   final BorderRadiusTheme borderRadiusTheme = BorderRadiusTheme();
   return ThemeData(
     useMaterial3: true,
+    brightness: brightness,
     // tabBarTheme: TabBarTheme(
     //   labelPadding: EdgeInsets.all(8),
     // indicator: BoxDecoration(
@@ -297,8 +307,8 @@ ThemeData getTheme(
     // ),
     bottomSheetTheme: BottomSheetThemeData(
       surfaceTintColor: Colors.transparent,
-      modalBackgroundColor: cs.background,
-      backgroundColor: cs.background,
+      modalBackgroundColor: cs?.background,
+      backgroundColor: cs?.background,
     ),
     inputDecorationTheme: InputDecorationTheme(
       // contentPadding: const EdgeInsets.all(16),
@@ -388,3 +398,47 @@ const ColorScheme _defaultDarkColorScheme = ColorScheme(
 
 // Nice dark cs.
 //ColorScheme#b066f(brightness: Brightness.dark, primary: Color(0xffbb86fc), onPrimary: Color(0xff000000), primaryContainer: Color(0xffbb86fc), onPrimaryContainer: Color(0xff000000), error: Color(0xffcf6679), onError: Color(0xff000000), errorContainer: Color(0xffcf6679), onErrorContainer: Color(0xff000000), background: Color(0xff121212), onBackground: Color(0xffffffff), surface: Color(0xff121212), onSurface: Color(0xffffffff), surfaceVariant: Color(0xff121212), onSurfaceVariant: Color(0xffffffff), outline: Color(0xffffffff), outlineVariant: Color(0xffffffff), inverseSurface: Color(0xffffffff), onInverseSurface: Color(0xff121212), inversePrimary: Color(0xff000000), surfaceTint: Color(0xffbb86fc))
+
+// Workaround for https://github.com/material-foundation/flutter-packages/issues/582
+(ColorScheme light, ColorScheme dark) _generateDynamicColourSchemes(
+    final ColorScheme lightDynamic, final ColorScheme darkDynamic) {
+  final ColorScheme lightBase =
+      ColorScheme.fromSeed(seedColor: lightDynamic.primary);
+  final ColorScheme darkBase = ColorScheme.fromSeed(
+      seedColor: darkDynamic.primary, brightness: Brightness.dark);
+
+  final List<Color> lightAdditionalColours =
+      _extractAdditionalColours(lightBase);
+  final List<Color> darkAdditionalColours = _extractAdditionalColours(darkBase);
+
+  final ColorScheme lightScheme =
+      _insertAdditionalColours(lightBase, lightAdditionalColours);
+  final ColorScheme darkScheme =
+      _insertAdditionalColours(darkBase, darkAdditionalColours);
+
+  return (lightScheme.harmonized(), darkScheme.harmonized());
+}
+
+List<Color> _extractAdditionalColours(final ColorScheme scheme) => <Color>[
+      scheme.surface,
+      scheme.surfaceDim,
+      scheme.surfaceBright,
+      scheme.surfaceContainerLowest,
+      scheme.surfaceContainerLow,
+      scheme.surfaceContainer,
+      scheme.surfaceContainerHigh,
+      scheme.surfaceContainerHighest,
+    ];
+
+ColorScheme _insertAdditionalColours(
+        final ColorScheme scheme, final List<Color> additionalColours) =>
+    scheme.copyWith(
+      surface: additionalColours[0],
+      surfaceDim: additionalColours[1],
+      surfaceBright: additionalColours[2],
+      surfaceContainerLowest: additionalColours[3],
+      surfaceContainerLow: additionalColours[4],
+      surfaceContainer: additionalColours[5],
+      surfaceContainerHigh: additionalColours[6],
+      surfaceContainerHighest: additionalColours[7],
+    );

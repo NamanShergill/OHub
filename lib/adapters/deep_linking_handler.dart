@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:diohub/app/global.dart';
 import 'package:diohub/common/bottom_sheet/url_actions.dart';
@@ -10,7 +11,6 @@ import 'package:diohub/utils/regex.dart';
 import 'package:diohub/utils/string_compare.dart';
 import 'package:diohub/view/issues_pulls/issue_pull_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:uni_links/uni_links.dart';
 
 String get _chars => '([^/\\s]+)';
 
@@ -21,12 +21,12 @@ String get _slash => '(/)';
 String get _digit => '(\\d+)';
 
 Future<String?> initUniLink() async {
-  final String? initialLink = await getInitialLink();
+  final String? initialLink = await AppLinks().getInitialLinkString();
   return initialLink;
 }
 
 void uniLinkStream() {
-  linkStream.listen(
+  AppLinks().stringLinkStream.listen(
     (final String? link) async {
       if (link != null) {
         await deepLinkNavigate(
