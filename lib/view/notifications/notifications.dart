@@ -1,7 +1,6 @@
 import 'package:diohub/common/animations/size_expanded_widget.dart';
 import 'package:diohub/common/bottom_sheet/bottom_sheets.dart';
 import 'package:diohub/common/misc/button.dart';
-import 'package:diohub/common/misc/collapsible_app_bar.dart';
 import 'package:diohub/common/misc/nested_scroll.dart';
 import 'package:diohub/common/wrappers/infinite_scroll_wrapper.dart';
 import 'package:diohub/models/events/notifications_model.dart';
@@ -15,6 +14,7 @@ import 'package:flutter_material_design_icons/flutter_material_design_icons.dart
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
+
   @override
   NotificationsScreenState createState() => NotificationsScreenState();
 }
@@ -99,20 +99,20 @@ class NotificationsScreenState extends State<NotificationsScreen>
                 expanded = !expanded;
               });
             },
-            child: CollapsibleAppBar(
-              minHeight: 100,
-              maxHeight: 150,
-              expandedParentPadding: 0,
-              title: 'Inbox',
-              trailing: IconButton(
-                icon: const Icon(Icons.sort),
-                onPressed: () {
-                  setState(() {
-                    expanded = !expanded;
-                  });
-                },
-              ),
-            ),
+            // child: CollapsibleScroller(
+            //   minHeight: 100,
+            //   maxHeight: 150,
+            //   expandedParentPadding: 0,
+            //   title: 'Inbox',
+            //   trailing: IconButton(
+            //     icon: const Icon(Icons.sort),
+            //     onPressed: () {
+            //       setState(() {
+            //         expanded = !expanded;
+            //       });
+            //     },
+            //   ),
+            // ),
           ),
         ),
       ],

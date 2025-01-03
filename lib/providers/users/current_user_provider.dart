@@ -2,11 +2,18 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:diohub/blocs/authentication_bloc/authentication_bloc.dart';
-import 'package:diohub/models/users/current_user_info_model.dart';
+import 'package:diohub/graphql/queries/users/__generated__/user_info.data.gql.dart';
 import 'package:diohub/providers/base_provider.dart';
 import 'package:diohub/services/users/user_info_service.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CurrentUserProvider extends BaseDataProvider<CurrentUserInfoModel> {
+extension ViewerProvider on BuildContext {
+  GviewerInfoData_viewer get viewer =>
+      Provider.of<CurrentUserProvider>(this).data;
+}
+
+class CurrentUserProvider extends BaseDataProvider<GviewerInfoData_viewer> {
   CurrentUserProvider({required this.authenticationBloc})
       : super(loadDataOnInit: authenticationBloc.state.authenticated) {
     authenticationBloc.stream
@@ -23,6 +30,7 @@ class CurrentUserProvider extends BaseDataProvider<CurrentUserInfoModel> {
       }
     });
   }
+
   final AuthenticationBloc authenticationBloc;
 
   @override
@@ -37,8 +45,8 @@ class CurrentUserProvider extends BaseDataProvider<CurrentUserInfoModel> {
   }
 
   @override
-  Future<CurrentUserInfoModel> setInitData({
+  Future<GviewerInfoData_viewer> setInitData({
     final bool isInitialisation = false,
   }) =>
-      UserInfoService.getCurrentUserInfo();
+      UserInfoService.getViewerInfo();
 }

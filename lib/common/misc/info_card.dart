@@ -32,8 +32,7 @@ class InfoCard extends StatelessWidget {
     super.key,
     this.title,
     this.leading,
-    this.headerPadding =
-        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+    this.headerPadding = const EdgeInsets.only(top: 8, left: 8, right: 8),
     final VoidCallback? onHeaderTap,
     this.headerColor,
     this.elevation,
@@ -50,7 +49,8 @@ class InfoCard extends StatelessWidget {
                 cardLinkType: CardLinkType.atTop,
               ),
               child: Padding(
-                padding: childPadding ?? const EdgeInsets.all(8),
+                padding: childPadding ??
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 child: Row(
                   children: <Widget>[
                     Flexible(child: child),
@@ -71,8 +71,7 @@ class InfoCard extends StatelessWidget {
     super.key,
     this.title,
     this.leading,
-    this.headerPadding =
-        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+    this.headerPadding = const EdgeInsets.only(top: 8, left: 8, right: 8),
     this.onHeaderTap,
     this.headerColor,
     this.elevation,
@@ -285,16 +284,17 @@ class CardHeader extends StatelessWidget {
         cardLinkType: cardLinkType,
         elevation: elevation,
         // color: color ?? context.colorScheme.surfaceVariant.asHint(),
-        color: color ?? context.colorScheme.secondaryContainer,
+        // color: color ?? context.colorScheme.secondaryContainer,
         // elevation: 0,
         onTap: onTap,
+
         child: DefaultTextStyle(
           style: context.textTheme.bodySmall!.copyWith(
             color: context.colorScheme.onSecondaryContainer,
           ),
           child: IconTheme.merge(
             data: IconThemeData(
-              color: context.colorScheme.onSecondaryContainer,
+              // color: context.colorScheme.onSecondaryContainer,
               size: 16,
             ),
             child: child,

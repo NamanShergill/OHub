@@ -78,8 +78,11 @@ class _ScrollDynamicElevationState extends State<ScrollDynamicElevation> {
     };
     return ColoredBox(
       color: states.contains(MaterialState.scrolledUnder)
-          ? ElevationOverlay.applySurfaceTint(context.colorScheme.background,
-              context.colorScheme.surfaceTint, 3,)
+          ? ElevationOverlay.applySurfaceTint(
+              context.colorScheme.background,
+              context.colorScheme.surfaceTint,
+              3,
+            )
           : context.colorScheme.background,
       // duration: Duration(milliseconds: 100),
       child: widget.child,
@@ -88,5 +91,6 @@ class _ScrollDynamicElevationState extends State<ScrollDynamicElevation> {
 }
 
 bool defaultScrollNotificationPredicate(
-        final ScrollNotification notification,) =>
+  final ScrollNotification notification,
+) =>
     notification.depth == 0;

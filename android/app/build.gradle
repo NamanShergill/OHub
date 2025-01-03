@@ -33,7 +33,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-
+    ndkVersion flutter.ndkVersion
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -65,6 +65,7 @@ android {
 
     defaultConfig {
         applicationId "com.felix.diohub"
+//        minSdkVersion 23
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

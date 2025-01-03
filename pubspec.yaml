@@ -3,9 +3,7 @@ description: A Github mobile client
 
 publish_to: 'none'
 
-version: 1.0.0-dev.1+5
-
-# dart run build_runner watch --delete-conflicting-outputs
+version: 1.0.0-dev.2+5
 
 environment:
   sdk: ">=3.2.0 <4.0.0"
@@ -28,6 +26,8 @@ dependencies:
   # When fixed, remove the change in ios/Podfile
   dio_cache_interceptor_db_store: ^5.1.1
   dynamic_color: ^1.7.0
+  dynamic_sliver_app_bar:
+    path: dependencies/dynamic_sliver_app_bar
   equatable: ^2.0.7
   expand_widget: ^3.1.1
 
@@ -58,10 +58,7 @@ dependencies:
       dependencies/dart-highlighting/flutter_highlighting
 
   # Temporary dependency until the following is fixed: https://github.com/pichillilorenzo/flutter_inappwebview/issues/1735#issuecomment-1725248033
-  flutter_inappwebview:
-    git:
-      url: https://github.com/Estrelio/flutter_inappwebview.git
-      ref: fix-xcode-17
+  flutter_inappwebview: ^6.1.5
 
   flutter_keyboard_visibility: ^6.0.0
   flutter_material_design_icons: ^1.1.7447
@@ -112,7 +109,7 @@ dependencies:
   sliver_tools: ^0.2.12
   sqlite3_flutter_libs: ^0.5.27
   #  tabbed_view: ^1.18.0
-  super_context_menu: ^0.9.0-dev.5
+  #  super_context_menu: ^0.9.0-dev.5
   timeline_tile: ^2.0.0
   #  uni_links: ^0.5.1
   url_launcher: ^6.3.1

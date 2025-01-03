@@ -14,11 +14,11 @@ import 'package:diohub/common/search_overlay/search_overlay.dart' as _i13;
 import 'package:diohub/graphql/queries/issues_pulls/__generated__/issue_templates.data.gql.dart'
     as _i18;
 import 'package:diohub/view/authentication/auth_screen.dart' as _i1;
-import 'package:diohub/view/issues_pulls/issue_pull_screen.dart' as _i5;
+import 'package:diohub/view/home/home.dart' as _i5;
+import 'package:diohub/view/issues_pulls/issue_pull_screen.dart' as _i6;
 import 'package:diohub/view/issues_pulls/widgets/p_r_review_screen.dart'
     as _i10;
-import 'package:diohub/view/landing/landing.dart' as _i7;
-import 'package:diohub/view/landing/widgets/landing_loading_screen.dart' as _i6;
+import 'package:diohub/view/landing/widgets/landing_loading_screen.dart' as _i7;
 import 'package:diohub/view/landing/widgets/place_holder_screen.dart' as _i11;
 import 'package:diohub/view/profile/other_user_profile_screen.dart' as _i9;
 import 'package:diohub/view/repository/code/file_viewer.dart' as _i4;
@@ -252,7 +252,60 @@ class FileViewerAPIArgs {
 }
 
 /// generated route for
-/// [_i5.IssuePullScreen]
+/// [_i5.HomeScreen]
+class HomeRoute extends _i15.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    _i16.Key? key,
+    _i17.PathData? deepLinkData,
+    dynamic buildThemePZero,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
+          HomeRoute.name,
+          args: HomeRouteArgs(
+            key: key,
+            deepLinkData: deepLinkData,
+            buildThemePZero: buildThemePZero,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static _i15.PageInfo page = _i15.PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+      return _i5.HomeScreen(
+        key: args.key,
+        deepLinkData: args.deepLinkData,
+        buildThemePZero: args.buildThemePZero,
+      );
+    },
+  );
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({
+    this.key,
+    this.deepLinkData,
+    this.buildThemePZero,
+  });
+
+  final _i16.Key? key;
+
+  final _i17.PathData? deepLinkData;
+
+  final dynamic buildThemePZero;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, deepLinkData: $deepLinkData, buildThemePZero: $buildThemePZero}';
+  }
+}
+
+/// generated route for
+/// [_i6.IssuePullScreen]
 class IssuePullRoute extends _i15.PageRouteInfo<IssuePullRouteArgs> {
   IssuePullRoute({
     required int number,
@@ -281,7 +334,7 @@ class IssuePullRoute extends _i15.PageRouteInfo<IssuePullRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<IssuePullRouteArgs>();
-      return _i5.IssuePullScreen(
+      return _i6.IssuePullScreen(
         number: args.number,
         repoName: args.repoName,
         ownerName: args.ownerName,
@@ -322,7 +375,7 @@ class IssuePullRouteArgs {
 }
 
 /// generated route for
-/// [_i6.LandingLoadingScreen]
+/// [_i7.LandingLoadingScreen]
 class LandingLoadingRoute extends _i15.PageRouteInfo<LandingLoadingRouteArgs> {
   LandingLoadingRoute({
     _i16.Key? key,
@@ -344,7 +397,7 @@ class LandingLoadingRoute extends _i15.PageRouteInfo<LandingLoadingRouteArgs> {
     builder: (data) {
       final args = data.argsAs<LandingLoadingRouteArgs>(
           orElse: () => const LandingLoadingRouteArgs());
-      return _i6.LandingLoadingScreen(
+      return _i7.LandingLoadingScreen(
         key: args.key,
         initLink: args.initLink,
       );
@@ -365,53 +418,6 @@ class LandingLoadingRouteArgs {
   @override
   String toString() {
     return 'LandingLoadingRouteArgs{key: $key, initLink: $initLink}';
-  }
-}
-
-/// generated route for
-/// [_i7.LandingScreen]
-class LandingRoute extends _i15.PageRouteInfo<LandingRouteArgs> {
-  LandingRoute({
-    _i17.PathData? deepLinkData,
-    _i16.Key? key,
-    List<_i15.PageRouteInfo>? children,
-  }) : super(
-          LandingRoute.name,
-          args: LandingRouteArgs(
-            deepLinkData: deepLinkData,
-            key: key,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'LandingRoute';
-
-  static _i15.PageInfo page = _i15.PageInfo(
-    name,
-    builder: (data) {
-      final args =
-          data.argsAs<LandingRouteArgs>(orElse: () => const LandingRouteArgs());
-      return _i7.LandingScreen(
-        deepLinkData: args.deepLinkData,
-        key: args.key,
-      );
-    },
-  );
-}
-
-class LandingRouteArgs {
-  const LandingRouteArgs({
-    this.deepLinkData,
-    this.key,
-  });
-
-  final _i17.PathData? deepLinkData;
-
-  final _i16.Key? key;
-
-  @override
-  String toString() {
-    return 'LandingRouteArgs{deepLinkData: $deepLinkData, key: $key}';
   }
 }
 

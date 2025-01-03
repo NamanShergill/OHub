@@ -14,6 +14,7 @@ class IssueScreen extends StatefulWidget {
     this.commentsSince,
     super.key,
   });
+
   final GissueInfo issueInfo;
   final DateTime? commentsSince;
   final int initialIndex;
@@ -23,18 +24,9 @@ class IssueScreen extends StatefulWidget {
   IssueScreenState createState() => IssueScreenState();
 }
 
-class IssueScreenState extends State<IssueScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController tabController;
-  final ScrollController scrollController = ScrollController();
-
+class IssueScreenState extends State<IssueScreen> {
   @override
   void initState() {
-    tabController = TabController(
-      length: 2,
-      initialIndex: widget.initialIndex,
-      vsync: this,
-    );
     super.initState();
   }
 

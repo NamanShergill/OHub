@@ -54,8 +54,7 @@ class AuthScreen extends StatelessWidget {
                           if (onAuthenticated != null) {
                             onAuthenticated!();
                           } else {
-                            await AutoRouter.of(context)
-                                .replace(LandingRoute());
+                            await AutoRouter.of(context).replace(HomeRoute());
                           }
                         }
                       },

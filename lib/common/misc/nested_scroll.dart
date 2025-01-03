@@ -7,6 +7,7 @@ class NestedScroll extends StatelessWidget {
     required this.body,
     super.key,
   });
+
   final List<Widget> Function(
     (
       BuildContext context, {

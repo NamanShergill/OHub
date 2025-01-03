@@ -65,7 +65,7 @@ Future<void> deepLinkNavigate(final Uri link) async {
       ),
     );
   } else if (_getRoutes(link)?.isNotEmpty ?? false) {
-    if (_getRoutes(link)?.first is LandingRoute) {
+    if (_getRoutes(link)?.first is HomeRoute) {
       AutoRouter.of(currentContext)
           .popUntil((final Route<dynamic> route) => false);
     }
@@ -123,7 +123,7 @@ List<PageRouteInfo>? _getRoutes(final Uri uri) {
   if (relPath.regexCompleteMatch(_exceptionURLPatterns)) {
     unawaited(openInAppBrowser(link));
   } else if (relPath.regexCompleteMatch(_landingPageURLPattern)) {
-    temp.add(LandingRoute(deepLinkData: relPath.toPathData));
+    temp.add(HomeRoute(deepLinkData: relPath.toPathData));
   } else if (relPath.regexCompleteMatch(_issuePageURLPattern) ||
       relPath.regexCompleteMatch(_pullPageURLPattern)) {
     temp.add(issuePullScreenRoute(relPath.toPathData));

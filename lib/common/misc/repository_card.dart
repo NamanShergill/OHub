@@ -6,7 +6,6 @@ import 'package:diohub/common/wrappers/api_wrapper_widget.dart';
 import 'package:diohub/models/repositories/repository_model.dart';
 import 'package:diohub/routes/router.gr.dart';
 import 'package:diohub/services/repositories/repo_services.dart';
-import 'package:diohub/utils/get_date.dart';
 import 'package:diohub/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -158,21 +157,21 @@ class RepositoryCard extends StatelessWidget {
               const SizedBox(
                 width: 16,
               ),
-              Icon(
-                Icons.update_rounded,
-                size: 12,
-                color: context.colorScheme.onSurface.asHint(),
-              ),
-              const SizedBox(
-                width: 4,
-              ),
-              Text(
-                getDate(repo!.updatedAt.toString()),
-                style: context.textTheme.bodySmall?.asHint(),
-                // style: AppThemeTextStyles.eventCardChildFooter(
-                //   context,
-                // ),
-              ),
+              // Icon(
+              //   Icons.update_rounded,
+              //   size: 12,
+              //   color: context.colorScheme.onSurface.asHint(),
+              // ),
+              // const SizedBox(
+              //   width: 4,
+              // ),
+              // Text(
+              //   getDate(repo!.updatedAt.toString()),
+              //   style: context.textTheme.bodySmall?.asHint(),
+              //   // style: AppThemeTextStyles.eventCardChildFooter(
+              //   //   context,
+              //   // ),
+              // ),
             ],
           ),
         ],
