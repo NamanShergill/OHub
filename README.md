@@ -1,19 +1,12 @@
 # DioHub for Github
 
-<!--ts-->
-   * [Summary](#summary)
-   * [Features](#features)
-   * [Roadmap](#roadmap)
-   * [Support](#support)
-   * [Screenshots](#screenshots)
-   * [Build Instructions](#build-instructions)
-<!--te-->
-
 ## Summary
 
 DioHub is an open-source unofficial GitHub mobile client, that aims to deliver the ultimate GitHub experience on mobile devices.
 
-It is under active development and aims to implement all the available features on the GitHub website, and much more.
+### Is the project dead?
+
+No, there is a big update that has been in works for a while now, progress has just been slow because, well, I work on this in my free time. However, I expect to put out a few dev releases in the coming months, and hopefully, a full play store & app store release soon, once everything is ready. Keep an eye on [the releases section](https://github.com/NamanShergill/diohub/releases) if you would like to keep up with the dev builds. There is also a [Telegram group](https://t.me/DiohubApp) for any discussion on the project.
 
 <a href="https://play.google.com/store/apps/details?id=com.felix.diohub"><img src="https://user-images.githubusercontent.com/33877135/129138668-8d48aaf5-c844-4e38-bb9b-78df12af8ea9.png" width="300"></a>
 
