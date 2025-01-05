@@ -291,7 +291,7 @@ abstract class BaseAPIHandler {
 
   final APILoggingSettings? apiLogSettings;
 
-  APILoggingSettings? get defaultAPILogSettings => null;
+  APILoggingSettings? get defaultAPILogSettings => APILoggingSettings();
 
   Future<void> onError(
     final DioException error,
@@ -472,12 +472,12 @@ abstract class BaseAPIHandler {
 
 class APILoggingSettings {
   APILoggingSettings({
-    this.request = true,
+    this.request = false,
     this.cURL = true,
     this.requestHeader = false,
     this.requestBody = false,
     this.responseHeader = false,
-    this.responseBody = true,
+    this.responseBody = false,
     this.error = true,
     this.maxWidth = 90,
     this.compact = true,

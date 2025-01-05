@@ -199,7 +199,8 @@ class BaseCommentState extends State<BaseComment> {
               cardLinkType:
                   _reactionsNotEmpty() ? CardLinkType.both : CardLinkType.atTop,
               child: Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.symmetric(horizontal: 8)
+                    .copyWith(bottom: 8),
                 child: Column(
                   children: <Widget>[
                     if (widget.description != null)
@@ -268,7 +269,7 @@ class BaseCommentState extends State<BaseComment> {
     final Widget button,
   ) =>
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 8).copyWith(top: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

@@ -259,14 +259,6 @@ class RepositoryScreenState extends DeepLinkWidgetState<RepositoryScreen>
                       // imageUri: repo.owner?.avatarUrl,
                       builder: (context) => DynamicTabsParent(
                         controller: tabController,
-                        tabBuilder: (
-                          final BuildContext context,
-                          final DynamicTab tab,
-                        ) =>
-                            buildDynamicTabMenuButton(
-                          tab: tab,
-                          tabController: tabController,
-                        ),
                         builder: (
                           final BuildContext context,
                           final PreferredSizeWidget tabs,
@@ -431,46 +423,3 @@ class RepositoryScreenState extends DeepLinkWidgetState<RepositoryScreen>
         ),
       );
 }
-
-Tab buildDynamicTabMenuButton({
-  required final DynamicTab tab,
-  required final DynamicTabsController tabController,
-}) =>
-    Tab(
-      // text: tab.tab?.label ?? tab.identifier,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: tab.isDismissible ? 0.0 : 16),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: tab.isDismissible ? 24.0 : 0),
-              child: Text(tab.identifier),
-            ),
-            if (tab.isDismissible)
-              MenuButton(
-                buttonBuilder: (final BuildContext context, final showMenu) =>
-                    IconButton(
-                  icon: Icon(
-                    Icons.adaptive.more_rounded,
-                  ),
-                  // padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-
-                  onPressed: showMenu,
-                ),
-                itemBuilder: (final BuildContext context) =>
-                    <PullDownMenuEntry>[
-                  PullDownMenuItem(
-                    onTap: () {
-                      tabController.closeTab(tab.identifier);
-                    },
-                    title: 'Close Tab',
-                    icon: Icons.close_rounded,
-                  ),
-                ],
-              ),
-          ],
-        ),
-      ),
-    );

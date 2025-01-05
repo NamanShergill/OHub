@@ -17,6 +17,7 @@ class Button extends StatefulWidget {
     // this.loadingWidget,
     super.key,
   });
+
   final VoidCallback? onTap;
   final Color? color;
   final bool enabled;
@@ -24,6 +25,7 @@ class Button extends StatefulWidget {
   final Icon? leadingIcon;
   final Icon? trailingIcon;
   final double borderRadius;
+
   // final Widget? loadingWidget;
   final bool stretch;
   final bool loading;
@@ -84,6 +86,36 @@ class ButtonState extends State<Button> {
       );
 }
 
+class AppButton extends StatelessWidget {
+  const AppButton({
+    required this.child,
+    required this.onPressed,
+    super.key,
+  });
+
+  AppButton.icon({
+    required Widget child,
+    required this.onPressed,
+    required Widget icon,
+    super.key,
+  }) : child = Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            icon,
+            const SizedBox(width: 8),
+            child,
+          ],
+        );
+  final Widget child;
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(final BuildContext context) => ElevatedButton(
+        onPressed: onPressed,
+        child: child,
+      );
+}
+
 class StringButton extends StatelessWidget {
   const StringButton({
     required this.onTap,
@@ -102,6 +134,7 @@ class StringButton extends StatelessWidget {
     // this.loadingText,
     super.key,
   });
+
   final VoidCallback? onTap;
   final Color? color;
   final bool enabled;
@@ -110,6 +143,7 @@ class StringButton extends StatelessWidget {
   final String? subtitle;
   final Icon? leadingIcon;
   final double borderRadius;
+
   // final String? loadingText;
   final Icon? trailingIcon;
   final bool loading;
@@ -136,7 +170,7 @@ class StringButton extends StatelessWidget {
           children: <Widget>[
             Text(
               title!,
-              // style: Theme.of(context).textTheme.labelLarge!.copyWith(textSize),
+              style: TextStyle(fontSize: textSize),
             ),
             Visibility(
               visible: subtitle != null,

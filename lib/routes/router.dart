@@ -30,7 +30,7 @@ class AppRouter extends RootStackRouter {
           initial: true,
         ),
         AutoRoute(
-          page: LandingRoute.page,
+          page: HomeRoute.page,
           guards: <AutoRouteGuard>[
             authGuard,
           ],

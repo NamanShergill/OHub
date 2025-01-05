@@ -5,13 +5,14 @@ import 'package:diohub/common/misc/loading_indicator.dart';
 import 'package:diohub/common/wrappers/provider_loading_progress_wrapper.dart';
 import 'package:diohub/providers/base_provider.dart';
 import 'package:diohub/providers/users/current_user_provider.dart';
-import 'package:diohub/view/landing/landing.dart';
+import 'package:diohub/view/home/home.dart';
 import 'package:flutter/material.dart';
 
 /// Show loading indicator on app startup until authentication status is determined.
 @RoutePage()
 class LandingLoadingScreen extends StatelessWidget {
   const LandingLoadingScreen({super.key, this.initLink});
+
   final Uri? initLink;
 
   @override
@@ -37,7 +38,7 @@ class LandingLoadingScreen extends StatelessWidget {
           ),
           childBuilder:
               (final BuildContext context, final CurrentUserProvider value) =>
-                  const LandingScreen(),
+                  const HomeScreen(),
         ),
       );
 }

@@ -21,7 +21,7 @@ query getUserPinnedRepos($user: String!){
         pinnedItems(first: 6, types:[REPOSITORY]){
             edges {
                 node {
-                   __typename ... on Repository {
+                    __typename ... on Repository {
                         name
                         description
                         stargazerCount
@@ -53,6 +53,28 @@ query followStatusInfo($user:String!){
         followers {
             totalCount
         }
+    }
+}
+
+query viewerInfo{
+    viewer{
+        id
+        login
+        name
+        avatarUrl
+        issues(filterBy: {states: OPEN}){
+            totalCount
+        }
+        pullRequests(states: OPEN){
+            totalCount
+        }
+        organizations{
+            totalCount
+        }
+        repositories{
+            totalCount
+        }
+
     }
 }
 

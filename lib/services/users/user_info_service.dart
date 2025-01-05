@@ -5,23 +5,22 @@ import 'package:diohub/graphql/queries/users/__generated__/user_info.req.gql.dar
 import 'package:diohub/graphql/queries/viewer/__generated__/viewer.query.data.gql.dart';
 import 'package:diohub/graphql/queries/viewer/__generated__/viewer.query.req.gql.dart';
 import 'package:diohub/models/repositories/repository_model.dart';
-import 'package:diohub/models/users/current_user_info_model.dart';
 import 'package:diohub/models/users/user_info_model.dart';
 import 'package:diohub/utils/type_cast.dart';
 
 class UserInfoService {
-  UserInfoService(this.temp);
+  UserInfoService(this.login);
 
   static final GraphqlHandler _gqlHandler = GraphqlHandler();
-  final String temp;
+  final String login;
   static final RESTHandler _restHandler = RESTHandler();
 
   // Ref: https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
-  static Future<CurrentUserInfoModel> getCurrentUserInfo() async {
-    final Response<TypeMap> response = await _restHandler.get<TypeMap>(
-      '/user',
+  static Future<GviewerInfoData_viewer> getViewerInfo() async {
+    final GQLResponse response = await _gqlHandler.query(
+      GviewerInfoReq(),
     );
-    return CurrentUserInfoModel.fromJson(response.data!);
+    return GviewerInfoData.fromJson(response.data!)!.viewer;
   }
 
   // Ref: https://docs.github.com/en/rest/reference/repos#list-repositories-for-the-authenticated-user

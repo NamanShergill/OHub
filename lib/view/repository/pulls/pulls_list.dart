@@ -1,7 +1,7 @@
 import 'package:diohub/common/search_overlay/filters.dart';
 import 'package:diohub/common/search_overlay/search_overlay.dart';
 import 'package:diohub/common/wrappers/search_scroll_wrapper.dart';
-import 'package:diohub/models/users/current_user_info_model.dart';
+import 'package:diohub/graphql/queries/users/__generated__/user_info.data.gql.dart';
 import 'package:diohub/providers/repository/repository_provider.dart';
 import 'package:diohub/providers/users/current_user_provider.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +9,11 @@ import 'package:provider/provider.dart';
 
 class PullsList extends StatelessWidget {
   const PullsList({super.key});
+
   @override
   Widget build(final BuildContext context) {
     final RepositoryProvider repo = Provider.of<RepositoryProvider>(context);
-    final CurrentUserInfoModel user =
+    final GviewerInfoData_viewer user =
         Provider.of<CurrentUserProvider>(context).data;
 
     return SearchScrollWrapper(

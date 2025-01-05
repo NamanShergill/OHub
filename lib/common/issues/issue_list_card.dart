@@ -52,7 +52,7 @@ class IssueListCard extends StatelessWidget {
               const SizedBox(
                 width: 4,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(
@@ -134,6 +134,9 @@ class IssueListCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodySmall?.asHint(),
                     ),
+                    headerPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ).copyWith(top: 8),
                     child: child,
                   )
                 : child,

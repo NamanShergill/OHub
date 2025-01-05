@@ -9,9 +9,9 @@ import 'package:diohub/common/search_overlay/search_overlay.dart';
 import 'package:diohub/common/wrappers/provider_loading_progress_wrapper.dart';
 import 'package:diohub/common/wrappers/search_scroll_wrapper.dart';
 import 'package:diohub/graphql/queries/issues_pulls/__generated__/issue_templates.data.gql.dart';
+import 'package:diohub/graphql/queries/users/__generated__/user_info.data.gql.dart';
 import 'package:diohub/models/issues/issue_model.dart';
 import 'package:diohub/models/repositories/repository_model.dart';
-import 'package:diohub/models/users/current_user_info_model.dart';
 import 'package:diohub/providers/repository/issue_templates_provider.dart';
 import 'package:diohub/providers/repository/pinned_issues_provider.dart';
 import 'package:diohub/providers/repository/repository_provider.dart';
@@ -28,7 +28,7 @@ class IssuesList extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final RepositoryProvider repo = Provider.of<RepositoryProvider>(context);
-    final CurrentUserInfoModel user =
+    final GviewerInfoData_viewer user =
         Provider.of<CurrentUserProvider>(context).data;
     return Stack(
       children: <Widget>[
@@ -43,10 +43,10 @@ class IssuesList extends StatelessWidget {
             ],
           ),
           quickFilters: <String, String>{
-            SearchQueries().assignee.toQueryString(user.login!):
+            SearchQueries().assignee.toQueryString(user.login):
                 'Assigned to you',
-            SearchQueries().author.toQueryString(user.login!): 'Your issues',
-            SearchQueries().mentions.toQueryString(user.login!): 'Mentions you',
+            SearchQueries().author.toQueryString(user.login): 'Your issues',
+            SearchQueries().mentions.toQueryString(user.login): 'Mentions you',
           },
           quickOptions: <String, String>{
             SearchQueries().iS.toQueryString('open'): 'Open issues only',

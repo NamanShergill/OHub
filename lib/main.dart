@@ -241,7 +241,7 @@ ThemeData getTheme(
   // cs= cs.copyWith(surfaceTint: Colors.transparent);
   final BorderRadiusTheme borderRadiusTheme = BorderRadiusTheme();
   return ThemeData(
-    useMaterial3: true,
+    // useMaterial3: true,
     brightness: brightness,
     // tabBarTheme: TabBarTheme(
     //   labelPadding: EdgeInsets.all(8),
@@ -307,8 +307,6 @@ ThemeData getTheme(
     // ),
     bottomSheetTheme: BottomSheetThemeData(
       surfaceTintColor: Colors.transparent,
-      modalBackgroundColor: cs?.background,
-      backgroundColor: cs?.background,
     ),
     inputDecorationTheme: InputDecorationTheme(
       // contentPadding: const EdgeInsets.all(16),

@@ -252,49 +252,42 @@ class IssuePullInfoTemplateState extends State<IssuePullInfoTemplate>
         },
       );
 
-  Widget buildDynamicTabsParent() {
-    return DynamicTabsParent(
-      controller: dynamicTabsController,
-      tabBuilder: (final BuildContext context, final DynamicTab tab) =>
-          buildDynamicTabMenuButton(
-        tab: tab,
-        tabController: dynamicTabsController,
-      ),
-      builder: (
-        final BuildContext context,
-        final PreferredSizeWidget tabBar,
-        final Widget tabView,
-      ) =>
-          EditingWrapper(
-        onSave: () {},
-        editingControllers: <EditingController<dynamic>>[
-          titleEditingController,
-          labelsEditingController,
-          descEditingController,
-          assigneeEditingController,
-        ],
-        builder: (final BuildContext context) => ScrollScaffold(
-          subHeader: SizeExpandedSection(
-            expand: dynamicTabsController.activeLength > 1,
-            child: buildTabsView(tabBar),
+  Widget buildDynamicTabsParent() => DynamicTabsParent(
+        controller: dynamicTabsController,
+        builder: (
+          final BuildContext context,
+          final PreferredSizeWidget tabBar,
+          final Widget tabView,
+        ) =>
+            EditingWrapper(
+          onSave: () {},
+          editingControllers: <EditingController<dynamic>>[
+            titleEditingController,
+            labelsEditingController,
+            descEditingController,
+            assigneeEditingController,
+          ],
+          builder: (final BuildContext context) => ScrollScaffold(
+            subHeader: SizeExpandedSection(
+              expand: dynamicTabsController.activeLength > 1,
+              child: buildTabsView(tabBar),
+            ),
+            appBar: buildAppBar(context),
+            wrapperBuilder: (final BuildContext context, final Widget child) =>
+                RefreshIndicator(
+              onRefresh: widget.onRefresh,
+              triggerMode: RefreshIndicatorTriggerMode.anywhere,
+              child: child,
+            ),
+            header: _ScreenHeader(
+              widget: widget,
+              titleEditingController: titleEditingController,
+              labelsEditingController: labelsEditingController,
+            ),
+            body: tabView,
           ),
-          appBar: buildAppBar(context),
-          wrapperBuilder: (final BuildContext context, final Widget child) =>
-              RefreshIndicator(
-            onRefresh: widget.onRefresh,
-            triggerMode: RefreshIndicatorTriggerMode.anywhere,
-            child: child,
-          ),
-          header: _ScreenHeader(
-            widget: widget,
-            titleEditingController: titleEditingController,
-            labelsEditingController: labelsEditingController,
-          ),
-          body: tabView,
         ),
-      ),
-    );
-  }
+      );
 
   List<DynamicTab> _buildTabs() => List<DynamicTab>.from(widget.dynamicTabs)
     ..addAll(

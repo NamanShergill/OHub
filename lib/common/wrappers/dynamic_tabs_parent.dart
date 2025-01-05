@@ -1,6 +1,7 @@
-import 'package:diohub/common/misc/round_button.dart';
+import 'package:diohub/common/misc/menu_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dynamic_tabs/flutter_dynamic_tabs.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 
 class DynamicTabsParent extends StatelessWidget {
   const DynamicTabsParent({
@@ -27,45 +28,54 @@ class DynamicTabsParent extends StatelessWidget {
   Widget build(final BuildContext context) => DynamicTabsWrapper(
         controller: controller,
         tabBarSettings: DynamicTabSettings(
-            // indicatorPadding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-            ),
+          // indicatorPadding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+          dividerColor: Colors.transparent,
+          // padding: EdgeInsets.zero,
+          tabAlignment: TabAlignment.center,
+        ),
         tabBuilder: (final BuildContext context, final DynamicTab tab) =>
             tabBuilder?.call(context, tab) ??
-            Tab(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16)
-                        .copyWith(right: tab.isDismissible ? 0 : 16),
-                    child: Text(
-                      tab.identifier,
-                    ),
-                  ),
-                  if (tab.isDismissible)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: RoundButton(
-                        // color: context.palette.elementsOnColors,
-                        padding: const EdgeInsets.all(4),
-                        onPressed: () {
-                          controller.closeTab(tab.identifier, showDialog: true);
-                        },
-                        onLongPress: () {
-                          controller.closeTab(tab.identifier);
-                        },
-                        icon: const Icon(
-                          Icons.close_rounded,
-                          size: 12,
-                          // color: context.colorScheme.accent,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+            _buildDynamicTabMenuButton(tab: tab, tabController: controller),
         onTabClose: onTabClose,
         builder: builder,
       );
 }
+
+Tab _buildDynamicTabMenuButton({
+  required final DynamicTab tab,
+  required final DynamicTabsController tabController,
+}) =>
+    Tab(
+      // text: tab.tab?.label ?? tab.identifier,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(left: tab.isDismissible ? 8.0 : 0),
+            child: Text(tab.tab?.label ?? tab.identifier),
+          ),
+          if (tab.isDismissible)
+            MenuButton(
+              buttonBuilder: (final BuildContext context, final showMenu) =>
+                  IconButton(
+                icon: Icon(
+                  Icons.adaptive.more_rounded,
+                ),
+                // padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+
+                onPressed: showMenu,
+              ),
+              itemBuilder: (final BuildContext context) => <PullDownMenuEntry>[
+                PullDownMenuItem(
+                  onTap: () {
+                    tabController.closeTab(tab.identifier);
+                  },
+                  title: 'Close Tab',
+                  icon: Icons.close_rounded,
+                ),
+              ],
+            ),
+        ],
+      ),
+    );
